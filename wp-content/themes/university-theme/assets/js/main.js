@@ -65,24 +65,29 @@
 		}
 
 		if (nextBtn) {
-			nextBtn.addEventListener('click', function () {
+			nextBtn.addEventListener('click', function (e) {
+				if (e) e.preventDefault();
 				showSlide(currentIndex + 1);
 				startAutoPlay();
 			});
 		}
 
 		if (prevBtn) {
-			prevBtn.addEventListener('click', function () {
+			prevBtn.addEventListener('click', function (e) {
+				if (e) e.preventDefault();
 				showSlide(currentIndex - 1);
 				startAutoPlay();
 			});
 		}
 
 		dots.forEach(function (dot) {
-			dot.addEventListener('click', function () {
+			dot.addEventListener('click', function (e) {
+				if (e) e.preventDefault();
 				var idx = parseInt(this.getAttribute('data-slide-index'), 10);
-				showSlide(idx);
-				startAutoPlay();
+				if (!isNaN(idx)) {
+					showSlide(idx);
+					startAutoPlay();
+				}
 			});
 		});
 
@@ -90,6 +95,27 @@
 		if (sliderWrap) {
 			sliderWrap.addEventListener('mouseenter', stopAutoPlay);
 			sliderWrap.addEventListener('mouseleave', startAutoPlay);
+
+			var touchStartX = 0;
+			var touchEndX = 0;
+			sliderWrap.addEventListener('touchstart', function (e) {
+				if (e.changedTouches && e.changedTouches[0]) {
+					touchStartX = e.changedTouches[0].screenX;
+				}
+			}, { passive: true });
+
+			sliderWrap.addEventListener('touchend', function (e) {
+				if (e.changedTouches && e.changedTouches[0]) {
+					touchEndX = e.changedTouches[0].screenX;
+					if (touchStartX - touchEndX > 50) {
+						showSlide(currentIndex + 1);
+						startAutoPlay();
+					} else if (touchEndX - touchStartX > 50) {
+						showSlide(currentIndex - 1);
+						startAutoPlay();
+					}
+				}
+			}, { passive: true });
 		}
 
 		startAutoPlay();
