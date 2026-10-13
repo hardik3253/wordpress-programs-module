@@ -19,8 +19,15 @@ function university_theme_setup() {
 }
 add_action( 'after_setup_theme', 'university_theme_setup' );
 
+// Load CPT & Taxonomy (Task 2)
+require_once get_template_directory() . '/includes/cpt-taxonomy.php';
+
+// Load Custom Fields & React Admin Metabox (Task 3)
+require_once get_template_directory() . '/includes/custom-fields.php';
+
 // Load Gutenberg custom blocks
 require_once get_template_directory() . '/includes/blocks.php';
+
 
 
 function university_theme_scripts() {
