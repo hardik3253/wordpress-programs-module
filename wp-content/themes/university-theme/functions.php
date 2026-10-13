@@ -86,8 +86,10 @@ function university_get_programs( $term_slug = '' ) {
 		'post_type'      => 'program',
 		'posts_per_page' => -1,
 		'post_status'    => 'publish',
-		'orderby'        => 'menu_order title',
-		'order'          => 'ASC',
+		'orderby'        => array(
+			'menu_order' => 'ASC',
+			'ID'         => 'ASC',
+		),
 	);
 
 	if ( ! empty( $term_slug ) && 'all' !== $term_slug ) {
