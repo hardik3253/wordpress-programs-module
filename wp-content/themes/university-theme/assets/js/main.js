@@ -8,6 +8,7 @@
 
 	document.addEventListener('DOMContentLoaded', function () {
 		initHeroSlider();
+		initMobileMenu();
 		initLeadModal();
 		initProgrammeFilter();
 		initClickTracking();
@@ -42,8 +43,10 @@
 			dots.forEach(function (dot, i) {
 				if (i === index) {
 					dot.classList.add('active');
+					dot.classList.remove('hollow');
 				} else {
 					dot.classList.remove('active');
+					dot.classList.add('hollow');
 				}
 			});
 
@@ -90,6 +93,30 @@
 		}
 
 		startAutoPlay();
+	}
+
+	/* ==========================================================================
+	   1b. Mobile Navigation Drawer
+	   ========================================================================== */
+	function initMobileMenu() {
+		var toggle = document.getElementById('mobile-menu-toggle');
+		var nav = document.getElementById('main-navigation');
+		if (!toggle || !nav) return;
+
+		toggle.addEventListener('click', function () {
+			var isActive = toggle.classList.toggle('active');
+			nav.classList.toggle('active');
+			toggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+		});
+
+		var navLinks = nav.querySelectorAll('a');
+		navLinks.forEach(function (link) {
+			link.addEventListener('click', function () {
+				toggle.classList.remove('active');
+				nav.classList.remove('active');
+				toggle.setAttribute('aria-expanded', 'false');
+			});
+		});
 	}
 
 	/* ==========================================================================
