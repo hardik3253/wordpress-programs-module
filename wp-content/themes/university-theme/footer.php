@@ -10,18 +10,13 @@
 		<!-- Left Column: University info -->
 		<div class="footer-brand-column">
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="footer-logo" <?php echo program_track_attr( 'link', 'footer-logo', 'site-footer', 'componentLink' ); ?>>
-				<div class="logo-crest">
-					<svg width="30" height="36" viewBox="0 0 34 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M17 2L3 7V21C3 29.5 9 37.5 17 40C25 37.5 31 29.5 31 21V7L17 2Z" fill="#F4B41A" stroke="#FFFFFF" stroke-width="2"/>
-						<path d="M17 8L10 13V22C10 26.5 13 30.5 17 32C21 30.5 24 26.5 24 22V13L17 8Z" fill="#08182B"/>
-						<circle cx="17" cy="18" r="3.5" fill="#F4B41A"/>
-					</svg>
-				</div>
-				<div class="logo-text">
-					<span class="logo-title">UNIVERSITY OF</span>
-					<span class="logo-highlight">ABERDEEN</span>
-					<span class="logo-sub">MUMBAI</span>
-				</div>
+				<?php
+				$footer_logo_url = get_template_directory_uri() . '/assets/images/logo.png';
+				if ( file_exists( WP_CONTENT_DIR . '/uploads/2026/10/uam-logo.png' ) ) {
+					$footer_logo_url = content_url( '/uploads/2026/10/uam-logo.png' );
+				}
+				?>
+				<img src="<?php echo esc_url( $footer_logo_url ); ?>" alt="University of Aberdeen Mumbai" class="footer-logo-image" width="160" height="66" />
 			</a>
 
 			<address class="footer-address">
