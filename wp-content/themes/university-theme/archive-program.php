@@ -28,9 +28,20 @@ $programs = university_get_programs( $active_filter );
 	<header class="page-intro-header">
 		<div class="page-intro-container">
 			<nav class="breadcrumb-trail" aria-label="Breadcrumb">
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" <?php echo program_track_attr( 'link', 'breadcrumb-home', 'breadcrumb-trail', 'componentLink' ); ?>>Home</a>
-				<span class="breadcrumb-sep">&gt;</span>
-				<span class="breadcrumb-current"><?php echo esc_html( $page_title ); ?></span>
+				<?php
+				$breadcrumbs = university_get_breadcrumbs();
+				$last_index  = count( $breadcrumbs ) - 1;
+				foreach ( $breadcrumbs as $i => $crumb ) :
+					if ( ! empty( $crumb['url'] ) && $i < $last_index ) :
+						?>
+						<a href="<?php echo esc_url( $crumb['url'] ); ?>" <?php echo ! empty( $crumb['track'] ) ? program_track_attr( 'link', $crumb['track'], 'breadcrumb-trail', 'componentLink' ) : ''; ?>>
+							<?php echo esc_html( $crumb['label'] ); ?>
+						</a>
+						<span class="breadcrumb-sep">&gt;</span>
+					<?php else : ?>
+						<span class="breadcrumb-current"><?php echo esc_html( $crumb['label'] ); ?></span>
+					<?php endif; ?>
+				<?php endforeach; ?>
 			</nav>
 
 			<h1 class="page-main-heading" id="programmesPageHeading"><?php echo esc_html( $page_title ); ?></h1>
@@ -75,11 +86,7 @@ $programs = university_get_programs( $active_filter );
 			<div class="programs-card-grid" id="programsGrid">
 				<?php if ( ! empty( $programs ) ) : ?>
 					<?php foreach ( $programs as $program_post ) : ?>
-						<?php
-						get_template_part( 'template-parts/program-card', null, array(
-							'post_id' => $program_post->ID,
-						) );
-						?>
+						<?php render_program_card( $program_post->ID ); ?>
 					<?php endforeach; ?>
 				<?php else : ?>
 					<!-- Empty State (Task 7) -->

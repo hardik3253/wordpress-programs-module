@@ -32,15 +32,20 @@ $term_name = $term_obj ? $term_obj->name : 'Programmes';
 					&larr; Back to programmes
 				</a>
 				<nav class="breadcrumb-trail" aria-label="Breadcrumb">
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" <?php echo program_track_attr( 'link', 'breadcrumb-home', 'programme-overview', 'componentLink' ); ?>>Home</a>
-					<span class="breadcrumb-sep">&gt;</span>
-					<a href="<?php echo esc_url( home_url( '/programmes' ) ); ?>" <?php echo program_track_attr( 'link', 'breadcrumb-programmes', 'programme-overview', 'componentLink' ); ?>>Programmes</a>
-					<span class="breadcrumb-sep">&gt;</span>
-					<?php if ( $term_obj ) : ?>
-						<a href="<?php echo esc_url( $term_link ); ?>" <?php echo program_track_attr( 'link', 'breadcrumb-' . sanitize_title( $term_name ), 'programme-overview', 'componentLink' ); ?>><?php echo esc_html( $term_name ); ?></a>
-						<span class="breadcrumb-sep">&gt;</span>
-					<?php endif; ?>
-					<span class="breadcrumb-current"><?php echo esc_html( $title ); ?></span>
+					<?php
+					$breadcrumbs = university_get_breadcrumbs();
+					$last_index  = count( $breadcrumbs ) - 1;
+					foreach ( $breadcrumbs as $i => $crumb ) :
+						if ( ! empty( $crumb['url'] ) && $i < $last_index ) :
+							?>
+							<a href="<?php echo esc_url( $crumb['url'] ); ?>" <?php echo ! empty( $crumb['track'] ) ? program_track_attr( 'link', $crumb['track'], 'programme-overview', 'componentLink' ) : ''; ?>>
+								<?php echo esc_html( $crumb['label'] ); ?>
+							</a>
+							<span class="breadcrumb-sep">&gt;</span>
+						<?php else : ?>
+							<span class="breadcrumb-current"><?php echo esc_html( $crumb['label'] ); ?></span>
+						<?php endif; ?>
+					<?php endforeach; ?>
 				</nav>
 			</div>
 
