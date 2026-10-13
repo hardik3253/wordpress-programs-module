@@ -40,10 +40,10 @@ function aberdeen_block_editor_assets() {
 	wp_localize_script( 'aberdeen-editor-blocks', 'AberdeenThemeData', array(
 		'templateUrl' => get_template_directory_uri(),
 		'defaultImages' => array(
-			'heroSkyline'      => get_template_directory_uri() . '/assets/images/mumbai-skyline.jpg',
-			'careersStudents'  => get_template_directory_uri() . '/assets/images/careers-students.jpg',
-			'aiUndergrad'      => get_template_directory_uri() . '/assets/images/ai-undergrad.jpg',
-			'lecturePostgrad'  => get_template_directory_uri() . '/assets/images/lecture-postgrad.jpg',
+			'heroSkyline'      => content_url( '/uploads/2026/10/97ee14467ba2db928b85ff8c65f82ab7718d4ea9.jpg' ),
+			'careersStudents'  => content_url( '/uploads/2026/10/2b71e6559542c9d76909b366948c3f60c0486b9a.png' ),
+			'aiUndergrad'      => content_url( '/uploads/2026/10/96e55d488c6122d7227906856b19651b9501832a.png' ),
+			'lecturePostgrad'  => content_url( '/uploads/2026/10/1f1cfbfa70f757fb0fc013dc99166d566c66d42c.jpg' ),
 		),
 		'urls' => array(
 			'home'          => home_url( '/' ),
@@ -177,7 +177,11 @@ function aberdeen_render_hero_slider_block( $attributes ) {
  */
 function aberdeen_render_careers_block( $attributes ) {
 	$title       = ! empty( $attributes['title'] ) ? $attributes['title'] : 'Careers and Employability';
-	$image_url   = ! empty( $attributes['imageUrl'] ) ? $attributes['imageUrl'] : get_template_directory_uri() . '/assets/images/careers-students.jpg';
+	$default_img = content_url( '/uploads/2026/10/2b71e6559542c9d76909b366948c3f60c0486b9a.png' );
+	if ( ! file_exists( WP_CONTENT_DIR . '/uploads/2026/10/2b71e6559542c9d76909b366948c3f60c0486b9a.png' ) ) {
+		$default_img = get_template_directory_uri() . '/assets/images/careers-students.jpg';
+	}
+	$image_url   = ! empty( $attributes['imageUrl'] ) ? $attributes['imageUrl'] : $default_img;
 	$p1          = ! empty( $attributes['paragraph1'] ) ? $attributes['paragraph1'] : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.';
 	$p2          = ! empty( $attributes['paragraph2'] ) ? $attributes['paragraph2'] : 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.';
 	$button_text = ! empty( $attributes['buttonText'] ) ? $attributes['buttonText'] : 'See More';

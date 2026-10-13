@@ -15,7 +15,7 @@
 	--color-text-light: #FFFFFF;
 	--color-text-muted: #94A3B8;
 	--color-text-dark: #0F172A;
-	--color-bg-careers: #E2E8F0;
+	--color-bg-careers: #DDE4E8;
 	--font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 	--font-heading: 'Outfit', 'Inter', sans-serif;
 	--transition-smooth: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
@@ -116,44 +116,20 @@ button {
 	user-select: none;
 }
 
-.logo-crest svg {
+.site-logo-image {
 	display: block;
-	width: 44px;
-	height: 52px;
+	height: 48px;
+	width: auto;
+	max-width: 200px;
+	object-fit: contain;
 }
 
-.logo-text {
-	display: flex;
-	flex-direction: column;
-	line-height: 1.1;
-}
-
-.logo-title {
-	font-family: var(--font-sans);
-	font-size: 0.65rem;
-	letter-spacing: 0.16em;
-	color: #FFFFFF;
-	font-weight: 600;
-	text-transform: uppercase;
-}
-
-.logo-highlight {
-	font-family: 'Cinzel', 'Playfair Display', Georgia, serif;
-	font-size: 1.35rem;
-	font-weight: 700;
-	letter-spacing: 0.06em;
-	color: #FFFFFF;
-	line-height: 1.05;
-	margin: 1px 0;
-}
-
-.logo-sub {
-	font-family: var(--font-sans);
-	font-size: 0.65rem;
-	letter-spacing: 0.32em;
-	color: #FFFFFF;
-	font-weight: 700;
-	text-transform: uppercase;
+.footer-logo-image {
+	display: block;
+	height: 44px;
+	width: auto;
+	max-width: 180px;
+	object-fit: contain;
 }
 
 .header-right-group {
@@ -420,52 +396,55 @@ button {
 ----------------------------------------- */
 .careers-section {
 	background-color: var(--color-bg-careers);
-	padding: 70px 24px 80px;
+	padding: 56px 40px 64px;
 }
 
 .careers-container {
-	max-width: 1280px;
+	max-width: 1200px;
 	margin: 0 auto;
 }
 
 .careers-header-wrap {
-	margin-bottom: 32px;
+	margin-bottom: 24px;
 }
 
 .section-heading-dark {
 	font-family: var(--font-heading);
-	font-size: 2.3rem;
+	font-size: 2.25rem;
 	font-weight: 800;
-	color: var(--color-navy-dark);
+	color: #2D3748;
 	line-height: 1.2;
+	letter-spacing: -0.01em;
 }
 
 .accent-underline-gold {
-	width: 60px;
-	height: 4px;
-	background-color: var(--color-gold);
+	width: 68px;
+	height: 3.5px;
+	background-color: #F2B827;
 	border-radius: 2px;
 	margin-top: 8px;
 }
 
 .careers-main-grid {
 	display: grid;
-	grid-template-columns: 1fr 1.2fr;
-	gap: 50px;
+	grid-template-columns: 1fr 1fr;
+	gap: 44px;
 	align-items: center;
 }
 
 .media-single-card {
-	border-radius: 16px;
+	border-radius: 8px;
 	overflow: hidden;
-	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
 .careers-single-img {
 	width: 100%;
-	height: 380px;
+	height: auto;
+	aspect-ratio: 16 / 10.5;
 	object-fit: cover;
 	display: block;
+	border-radius: 8px;
 	transition: transform 0.4s ease;
 }
 
@@ -475,17 +454,32 @@ button {
 
 .careers-text-body p {
 	color: #334155;
-	font-size: 1.02rem;
-	margin-bottom: 20px;
+	font-size: 0.94rem;
+	margin-bottom: 18px;
 	line-height: 1.65;
 }
 
+.careers-text-body p:last-child {
+	margin-bottom: 24px;
+}
+
 .careers-action {
-	margin-top: 28px;
+	margin-top: 0;
 }
 
 .btn-see-more {
-	padding: 10px 32px;
+	padding: 9px 28px;
+	font-size: 0.92rem;
+	font-weight: 700;
+	border-radius: 9999px;
+	background-color: #F2B827;
+	color: #0F172A;
+}
+
+.btn-see-more:hover {
+	background-color: #D99F12;
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(242, 184, 39, 0.35);
 }
 
 /* -----------------------------------------
@@ -1029,21 +1023,27 @@ button {
 		padding: 12px 16px 8px;
 	}
 
-	.logo-crest svg {
-		width: 36px;
-		height: 42px;
+	.site-logo-image {
+		height: 38px;
+		max-width: 150px;
 	}
 
-	.logo-title {
-		font-size: 0.58rem;
+	.footer-logo-image {
+		height: 36px;
+		max-width: 140px;
 	}
 
-	.logo-highlight {
-		font-size: 1.15rem;
+	.careers-section {
+		padding: 44px 20px 52px;
 	}
 
-	.logo-sub {
-		font-size: 0.58rem;
+	.section-heading-dark {
+		font-size: 1.8rem;
+	}
+
+	.accent-underline-gold {
+		width: 54px;
+		height: 3px;
 	}
 
 	.btn-header-apply {
