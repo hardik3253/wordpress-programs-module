@@ -1,0 +1,172 @@
+/**
+ * Gutenberg Editor Styles for Aberdeen Theme Blocks
+ */
+
+.aberdeen-editor-block {
+	border-radius: 8px;
+	margin: 20px 0;
+	overflow: hidden;
+	font-family: 'Inter', sans-serif;
+}
+
+/* Hero Preview */
+.aberdeen-hero-editor-preview {
+	background-size: cover;
+	background-position: center;
+	min-height: 380px;
+	position: relative;
+	display: flex;
+	align-items: flex-end;
+}
+
+.hero-editor-bottom-bar {
+	background: #082D3D;
+	width: 100%;
+	padding: 30px 24px;
+	text-align: center;
+}
+
+.hero-editor-headline {
+	color: #FFFFFF;
+	font-size: 2rem;
+	font-weight: 700;
+	margin: 0 0 10px 0;
+}
+
+.hero-editor-subtext {
+	color: #E2E8F0;
+	font-size: 1rem;
+	margin: 0 0 16px 0;
+}
+
+.hero-editor-dots {
+	display: flex;
+	justify-content: center;
+	gap: 8px;
+}
+
+.hero-editor-dots .dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: #34D399;
+}
+
+.hero-editor-dots .dot.hollow {
+	background: transparent;
+	border: 2px solid #34D399;
+}
+
+/* Careers Preview */
+.aberdeen-careers-editor-preview {
+	background: #E5EBF0;
+	padding: 40px 30px;
+}
+
+.careers-editor-header {
+	margin-bottom: 24px;
+}
+
+.careers-editor-title {
+	font-size: 1.8rem;
+	color: #08182B;
+	font-weight: 700;
+	margin: 0 0 6px 0;
+}
+
+.gold-accent-line {
+	width: 50px;
+	height: 4px;
+	background: #F4B41A;
+	border-radius: 2px;
+}
+
+.careers-editor-grid {
+	display: grid;
+	grid-template-columns: 1fr 1.2fr;
+	gap: 30px;
+	align-items: center;
+}
+
+.careers-editor-media img {
+	width: 100%;
+	border-radius: 12px;
+	display: block;
+}
+
+.editor-btn-gold {
+	display: inline-block;
+	background: #F4B41A;
+	color: #08182B;
+	font-weight: 600;
+	padding: 10px 24px;
+	border-radius: 9999px;
+	margin-top: 10px;
+}
+
+/* Programmes Preview */
+.aberdeen-programmes-editor-preview {
+	background: #08182B;
+	padding: 40px 30px;
+}
+
+.programmes-editor-header {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.programmes-editor-title {
+	color: #F4B41A;
+	font-size: 1.8rem;
+	font-weight: 700;
+	margin: 0 0 8px 0;
+}
+
+.gold-accent-line-center {
+	width: 50px;
+	height: 3px;
+	background: #F4B41A;
+	margin: 0 auto;
+}
+
+.programmes-editor-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 24px;
+}
+
+.programme-editor-card {
+	background: #072635;
+	border-radius: 12px;
+	overflow: hidden;
+	border: 1px solid #0D3E56;
+}
+
+.card-img-wrap img {
+	width: 100%;
+	height: 180px;
+	object-fit: cover;
+	display: block;
+}
+
+.card-body-wrap {
+	padding: 20px;
+}
+
+.card-title-gold {
+	color: #F4B41A;
+	font-size: 1.2rem;
+	margin: 0 0 10px 0;
+	font-weight: 700;
+}
+
+.card-desc {
+	color: #CBD5E1;
+	font-size: 0.9rem;
+	margin: 0 0 14px 0;
+}
+
+.card-link-gold {
+	color: #F4B41A;
+	font-weight: 600;
+}
