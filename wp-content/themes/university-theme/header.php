@@ -16,37 +16,13 @@
 	<div class="header-container">
 		<!-- Main Row: Logo on Left, Navigation + Apply Now on Right -->
 		<div class="header-main-row">
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="header-logo" <?php echo program_track_attr( 'link', 'header-logo', 'site-header', 'componentLink' ); ?>>
-				<div class="logo-crest">
-					<svg width="44" height="52" viewBox="0 0 44 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-						<!-- 1495 Year Inscription -->
-						<text x="1" y="8.5" font-family="'Cinzel', Georgia, serif" font-size="8.5" font-weight="700" fill="#FFFFFF" letter-spacing="0.5">1495</text>
-						<!-- Aberdeen Shield Outer Border -->
-						<path d="M4 13H40V31C40 40 22 48.5 22 48.5C22 48.5 4 40 4 31V13Z" fill="#0C2340" stroke="#FFFFFF" stroke-width="1.6"/>
-						<!-- Quarter Division Lines -->
-						<line x1="22" y1="13" x2="22" y2="48" stroke="#F4B41A" stroke-width="1.2"/>
-						<line x1="4" y1="28" x2="40" y2="28" stroke="#F4B41A" stroke-width="1.2"/>
-						<!-- Q1: Red Quarter + Gold Mitre -->
-						<path d="M5 14H21V27H5V14Z" fill="#B31B2C"/>
-						<path d="M13 16L9.5 20V24.5H16.5V20L13 16Z" fill="#F4B41A" stroke="#FFFFFF" stroke-width="0.5"/>
-						<circle cx="13" cy="18.5" r="1.2" fill="#FFFFFF"/>
-						<!-- Q2: Dark Blue Quarter + White Open Book -->
-						<path d="M23 14H39V27H23V14Z" fill="#0C2340"/>
-						<path d="M26 18C28 17.5 30.5 17.5 31 23C31.5 17.5 34 17.5 36 18V24C34 23.5 31.5 23.5 31 25.5C30.5 23.5 28 23.5 26 24V18Z" fill="#FFFFFF" stroke="#F4B41A" stroke-width="0.4"/>
-						<!-- Q3: Dark Blue Quarter + Tower/Castle -->
-						<path d="M5 29H21V41C17 39 10 35 5 29Z" fill="#0C2340"/>
-						<rect x="9.5" y="32" width="7" height="6" fill="#FFFFFF"/>
-						<rect x="8.5" y="30.5" width="9" height="1.5" fill="#F4B41A"/>
-						<!-- Q4: Red Quarter + Seal -->
-						<path d="M23 29H39C34 35 27 39 23 41V29Z" fill="#B31B2C"/>
-						<circle cx="31" cy="34.5" r="2.8" fill="#F4B41A" stroke="#FFFFFF" stroke-width="0.5"/>
-					</svg>
-				</div>
-				<div class="logo-text">
-					<span class="logo-title">UNIVERSITY OF</span>
-					<span class="logo-highlight">ABERDEEN</span>
-					<span class="logo-sub">MUMBAI</span>
-				</div>
+				<?php
+				$logo_url = get_template_directory_uri() . '/assets/images/logo.png';
+				if ( file_exists( WP_CONTENT_DIR . '/uploads/2026/10/uam-logo.png' ) ) {
+					$logo_url = content_url( '/uploads/2026/10/uam-logo.png' );
+				}
+				?>
+				<img src="<?php echo esc_url( $logo_url ); ?>" alt="University of Aberdeen Mumbai" class="site-logo-image" width="180" height="74" />
 			</a>
 
 			<!-- Navigation Links & Apply Now Button -->
