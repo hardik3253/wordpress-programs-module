@@ -40,7 +40,7 @@ function aberdeen_block_editor_assets() {
 	wp_localize_script( 'aberdeen-editor-blocks', 'AberdeenThemeData', array(
 		'templateUrl' => get_template_directory_uri(),
 		'defaultImages' => array(
-			'heroSkyline'      => get_template_directory_uri() . '/assets/images/hero-skyline.jpg',
+			'heroSkyline'      => get_template_directory_uri() . '/assets/images/mumbai-skyline.jpg',
 			'careersStudents'  => get_template_directory_uri() . '/assets/images/careers-students.jpg',
 			'aiUndergrad'      => get_template_directory_uri() . '/assets/images/ai-undergrad.jpg',
 			'lecturePostgrad'  => get_template_directory_uri() . '/assets/images/lecture-postgrad.jpg',
@@ -106,7 +106,9 @@ function aberdeen_render_hero_slider_block( $attributes ) {
 	$headline   = ! empty( $attributes['headline'] ) ? $attributes['headline'] : 'Join the University of Aberdeen in India';
 	$subtext    = ! empty( $attributes['subtext'] ) ? $attributes['subtext'] : 'Global challenges are waiting for new ways of thinking. Discover your true north and start creating a more inclusive and sustainable world';
 	$link_url   = aberdeen_format_url( ! empty( $attributes['linkUrl'] ) ? $attributes['linkUrl'] : '', '/programmes' );
-	$image_url  = ! empty( $attributes['imageUrl'] ) ? $attributes['imageUrl'] : get_template_directory_uri() . '/assets/images/hero-skyline.jpg';
+	$skyline_file = get_template_directory() . '/assets/images/mumbai-skyline.jpg';
+	$skyline_ver  = file_exists( $skyline_file ) ? filemtime( $skyline_file ) : '1.0';
+	$image_url    = ! empty( $attributes['imageUrl'] ) ? $attributes['imageUrl'] : ( get_template_directory_uri() . '/assets/images/mumbai-skyline.jpg?v=' . $skyline_ver );
 	$slides_json = ! empty( $attributes['slidesJson'] ) ? json_decode( $attributes['slidesJson'], true ) : null;
 
 	$slides = array(
@@ -139,11 +141,13 @@ function aberdeen_render_hero_slider_block( $attributes ) {
 							<h1 class="hero-headline"><?php echo esc_html( $slide_head ); ?></h1>
 							<p class="hero-subtext">
 								<?php echo esc_html( $slide_sub ); ?>
-								<a href="<?php echo esc_url( $slide_link ); ?>" class="hero-inline-link" <?php echo program_track_attr( 'link', 'hero-discover-more', 'hero-section', 'componentLink' ); ?>>&#10148;</a>
+								<a href="<?php echo esc_url( $slide_link ); ?>" class="hero-inline-link" <?php echo program_track_attr( 'link', 'hero-discover-more', 'hero-section', 'componentLink' ); ?>>
+									<span class="hero-arrow-gold">&#10148;</span>
+								</a>
 							</p>
-							<div class="slider-dots" role="tablist">
+							<div class="slider-dots" id="sliderDots" role="tablist" aria-label="Hero Slides">
 								<button type="button" class="slider-dot active" data-slide-index="0" aria-label="Slide 1" <?php echo program_track_attr( 'button', 'hero-dot-1', 'hero-section', 'componentButton' ); ?>></button>
-								<button type="button" class="slider-dot active" data-slide-index="1" aria-label="Slide 2" <?php echo program_track_attr( 'button', 'hero-dot-2', 'hero-section', 'componentButton' ); ?>></button>
+								<button type="button" class="slider-dot hollow" data-slide-index="1" aria-label="Slide 2" <?php echo program_track_attr( 'button', 'hero-dot-2', 'hero-section', 'componentButton' ); ?>></button>
 								<button type="button" class="slider-dot hollow" data-slide-index="2" aria-label="Slide 3" <?php echo program_track_attr( 'button', 'hero-dot-3', 'hero-section', 'componentButton' ); ?>></button>
 							</div>
 						</div>
@@ -153,12 +157,12 @@ function aberdeen_render_hero_slider_block( $attributes ) {
 
 			<!-- Slider Controls: Sleek square arrows matching attached Figma design -->
 			<button type="button" class="slider-arrow slider-arrow-prev" id="sliderPrevBtn" aria-label="Previous Slide" <?php echo program_track_attr( 'button', 'hero-slider-prev', 'hero-section', 'componentButton' ); ?>>
-				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+				<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#25A282" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
 					<polyline points="15 18 9 12 15 6"></polyline>
 				</svg>
 			</button>
 			<button type="button" class="slider-arrow slider-arrow-next" id="sliderNextBtn" aria-label="Next Slide" <?php echo program_track_attr( 'button', 'hero-slider-next', 'hero-section', 'componentButton' ); ?>>
-				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+				<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#25A282" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
 					<polyline points="9 18 15 12 9 6"></polyline>
 				</svg>
 			</button>

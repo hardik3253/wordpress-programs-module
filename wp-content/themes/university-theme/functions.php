@@ -37,8 +37,8 @@ require_once get_template_directory() . '/includes/tracking.php';
 
 
 function university_theme_scripts() {
-	// Google Fonts: Inter & Outfit
-	wp_enqueue_style( 'university-google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap', array(), null );
+	// Google Fonts: Cinzel, Inter & Outfit
+	wp_enqueue_style( 'university-google-fonts', 'https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap', array(), null );
 
 	// Theme Stylesheet
 	wp_enqueue_style( 'university-theme-main', get_template_directory_uri() . '/assets/css/main.css', array(), '1.0.0' );
