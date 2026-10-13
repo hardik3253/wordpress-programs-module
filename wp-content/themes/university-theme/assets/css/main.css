@@ -725,8 +725,8 @@ button {
 .lead-modal-overlay {
 	position: fixed;
 	inset: 0;
-	background: rgba(4, 13, 24, 0.75);
-	backdrop-filter: blur(5px);
+	background: rgba(0, 0, 0, 0.55);
+	backdrop-filter: blur(4px);
 	z-index: 9999;
 	display: flex;
 	align-items: center;
@@ -745,16 +745,17 @@ button {
 .lead-modal-dialog {
 	background: #FFFFFF;
 	width: 100%;
-	max-width: 620px;
-	border-radius: 12px;
-	box-shadow: var(--shadow-modal);
+	max-width: 610px;
+	border-radius: 20px;
+	box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
 	overflow: hidden;
 	position: relative;
 	transform: scale(0.96);
 	transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-	max-height: 90vh;
+	max-height: 92vh;
 	display: flex;
 	flex-direction: column;
+	font-family: var(--font-body);
 }
 
 .lead-modal-overlay.active .lead-modal-dialog {
@@ -762,35 +763,48 @@ button {
 }
 
 .lead-modal-header {
-	padding: 22px 28px 16px;
+	padding: 24px 32px 18px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	border-bottom: 1px solid #E2E8F0;
+	border-bottom: 1px solid #ECECEC;
 }
 
 .lead-modal-title {
-	font-family: var(--font-heading);
-	font-size: 1.45rem;
-	font-weight: 700;
-	color: var(--color-navy-dark);
+	font-family: var(--font-body);
+	font-size: 1.65rem;
+	font-weight: 800;
+	color: #292E33;
+	letter-spacing: -0.015em;
+	margin: 0;
 }
 
 .lead-modal-close {
-	font-size: 1.8rem;
-	color: #64748B;
-	line-height: 1;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	padding: 4px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #22282E;
+	transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.lead-modal-close:hover {
+	opacity: 0.7;
+	transform: scale(1.08);
 }
 
 .lead-modal-body {
-	padding: 24px 28px;
+	padding: 22px 32px 28px;
 	overflow-y: auto;
 }
 
 .lead-form {
 	display: flex;
 	flex-direction: column;
-	gap: 16px;
+	gap: 15px;
 }
 
 .form-row {
@@ -802,96 +816,166 @@ button {
 .form-group {
 	display: flex;
 	flex-direction: column;
-	gap: 6px;
+	gap: 5px;
 }
 
 .form-group label {
-	font-size: 0.82rem;
-	font-weight: 600;
-	color: #334155;
+	font-size: 0.88rem;
+	font-weight: 700;
+	color: #0D2A3A;
+	line-height: 1.25;
+	margin-bottom: 2px;
 }
 
 .form-group label .required {
-	color: #DC2626;
+	color: #D32F2F;
+	margin-left: 2px;
+	font-weight: 700;
 }
 
 .form-group input,
 .select-wrapper select {
 	width: 100%;
-	padding: 10px 14px;
-	border: 1px solid #CBD5E1;
-	border-radius: 6px;
+	height: 44px;
+	padding: 8px 14px;
+	border: 1.5px solid #284654;
+	border-radius: 8px;
 	font-size: 0.92rem;
-	color: #0F172A;
+	font-family: var(--font-body);
+	color: #162836;
 	background-color: #FFFFFF;
 	outline: none;
+	box-sizing: border-box;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.phone-input-wrapper {
-	display: flex;
-	align-items: center;
-	border: 1px solid #CBD5E1;
-	border-radius: 6px;
-	overflow: hidden;
+.form-group input:focus,
+.select-wrapper select:focus {
+	border-color: #25A282;
+	box-shadow: 0 0 0 3px rgba(37, 162, 130, 0.18);
 }
 
-.phone-input-wrapper .country-prefix {
-	background: #F1F5F9;
-	padding: 10px 12px;
-	font-size: 0.92rem;
-	font-weight: 600;
-	color: #475569;
-	border-right: 1px solid #CBD5E1;
+.select-wrapper {
+	position: relative;
+	width: 100%;
 }
 
-.phone-input-wrapper input {
-	border: none;
+.select-wrapper::after {
+	content: '';
+	position: absolute;
+	right: 16px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 12px;
+	height: 8px;
+	pointer-events: none;
+	background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.5 1.75L6 6.25L10.5 1.75' stroke='%231B3A4B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+
+.select-wrapper select {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	padding-right: 36px;
+	cursor: pointer;
+	color: #162836;
+}
+
+.form-disclaimer-wrapper {
+	border-top: 1px solid #ECECEC;
+	margin-top: 4px;
+	padding-top: 18px;
 }
 
 .form-disclaimer {
-	font-size: 0.76rem;
-	color: #64748B;
-	line-height: 1.45;
+	font-size: 0.81rem;
+	line-height: 1.55;
+	color: #0D2A3A;
+	margin-bottom: 16px;
 }
 
 .form-disclaimer .privacy-link {
-	color: var(--color-navy-dark);
-	font-weight: 600;
+	color: #0D2A3A;
+	font-weight: 700;
 	text-decoration: underline;
 }
 
+.form-actions {
+	display: flex;
+	justify-content: flex-start;
+}
+
 .btn-submit-lead {
-	width: 100%;
-	padding: 12px;
-	font-size: 1rem;
+	background-color: #FBB024;
+	color: #1A1D20;
+	font-weight: 700;
+	font-size: 0.95rem;
+	padding: 9px 28px;
 	border-radius: 6px;
+	border: none;
+	cursor: pointer;
+	display: inline-block;
+	width: auto;
+	box-shadow: none;
+	transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-submit-lead:hover {
+	background-color: #EBA016;
+}
+
+.btn-submit-lead:active {
+	transform: scale(0.98);
 }
 
 .lead-modal-thankyou {
-	padding: 32px 28px;
+	padding: 24px 32px 36px;
 }
 
 .thank-you-box {
-	background-color: #ECFDF5;
-	border: 1px solid #A7F3D0;
-	border-radius: 8px;
-	padding: 20px;
+	background-color: #277A38;
+	border: none;
+	border-radius: 4px;
+	padding: 22px 24px;
 	display: flex;
-	gap: 16px;
 	align-items: flex-start;
-	margin-bottom: 24px;
+	gap: 14px;
+	margin: 0;
+}
+
+.thank-you-icon {
+	flex-shrink: 0;
+	margin-top: 2px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.thank-you-content {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
 }
 
 .thank-you-title {
-	font-size: 1.15rem;
+	font-family: var(--font-body);
+	font-size: 1.12rem;
 	font-weight: 700;
-	color: #1E7E34;
-	margin-bottom: 6px;
+	color: #FFFFFF;
+	margin: 0;
+	line-height: 1.35;
 }
 
 .thank-you-desc {
-	font-size: 0.92rem;
-	color: #065F46;
+	font-family: var(--font-body);
+	font-size: 0.95rem;
+	font-weight: 400;
+	color: #FFFFFF;
+	margin: 0;
+	line-height: 1.45;
 }
 
 /* -----------------------------------------
@@ -1560,5 +1644,39 @@ button {
 
 	.cta-box h3 {
 		font-size: 1.45rem;
+	}
+
+	.lead-modal-dialog {
+		border-radius: 16px;
+		max-width: 95%;
+	}
+
+	.lead-modal-header {
+		padding: 18px 20px 14px;
+	}
+
+	.lead-modal-title {
+		font-size: 1.35rem;
+	}
+
+	.lead-modal-body {
+		padding: 18px 20px 24px;
+	}
+
+	.lead-modal-thankyou {
+		padding: 18px 20px 28px;
+	}
+
+	.thank-you-box {
+		padding: 18px 16px;
+		gap: 12px;
+	}
+
+	.thank-you-title {
+		font-size: 1.05rem;
+	}
+
+	.thank-you-desc {
+		font-size: 0.88rem;
 	}
 }

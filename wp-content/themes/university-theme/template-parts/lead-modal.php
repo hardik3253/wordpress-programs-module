@@ -1,7 +1,7 @@
 <?php
 /**
  * Lead Form Popup & Thank You Alert Modal
- * Based directly on the Figma "Lead Form W/o Check" and "Thank you!" designs
+ * Matches the reference design for "Register your interest" and "Thank you!" state
  */
 ?>
 <div class="lead-modal-overlay" id="leadModalOverlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle">
@@ -10,7 +10,10 @@
 		<div class="lead-modal-header">
 			<h2 class="lead-modal-title" id="leadModalTitle">Register your interest</h2>
 			<button type="button" class="lead-modal-close" id="leadModalClose" aria-label="Close modal" <?php echo program_track_attr( 'button', 'close-lead-modal', 'lead-form-popup', 'componentButton' ); ?>>
-				&times;
+				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22282E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+					<line x1="18" y1="6" x2="6" y2="18"></line>
+					<line x1="6" y1="6" x2="18" y2="18"></line>
+				</svg>
 			</button>
 		</div>
 
@@ -62,11 +65,11 @@
 				<div class="form-row">
 					<div class="form-group half-width">
 						<label for="first_name">First name <span class="required">*</span></label>
-						<input type="text" id="first_name" name="first_name" placeholder="First name" required>
+						<input type="text" id="first_name" name="first_name" required>
 					</div>
 					<div class="form-group half-width">
 						<label for="last_name">Last name <span class="required">*</span></label>
-						<input type="text" id="last_name" name="last_name" placeholder="Last name" required>
+						<input type="text" id="last_name" name="last_name" required>
 					</div>
 				</div>
 
@@ -77,7 +80,7 @@
 						<div class="select-wrapper">
 							<select id="country" name="country" required>
 								<option value="" disabled selected>Select an option</option>
-								<option value="IN" selected>India</option>
+								<option value="IN">India</option>
 								<option value="UK">United Kingdom</option>
 								<option value="US">United States</option>
 								<option value="AE">UAE</option>
@@ -89,7 +92,7 @@
 						<div class="select-wrapper">
 							<select id="city" name="city" required>
 								<option value="" disabled selected>Select an option</option>
-								<option value="Mumbai" selected>Mumbai</option>
+								<option value="Mumbai">Mumbai</option>
 								<option value="Pune">Pune</option>
 								<option value="Delhi">Delhi NCR</option>
 								<option value="Bangalore">Bangalore</option>
@@ -103,39 +106,38 @@
 				<div class="form-row">
 					<div class="form-group half-width">
 						<label for="phone_number">Phone number <span class="required">*</span></label>
-						<div class="phone-input-wrapper">
-							<span class="country-prefix">+91</span>
-							<input type="tel" id="phone_number" name="phone_number" placeholder="Phone number" required>
-						</div>
+						<input type="tel" id="phone_number" name="phone_number" value="+91" required>
 					</div>
 					<div class="form-group half-width">
 						<label for="email">Email <span class="required">*</span></label>
-						<input type="email" id="email" name="email" placeholder="Email" required>
+						<input type="email" id="email" name="email" required>
 					</div>
 				</div>
 
-				<!-- Disclaimer -->
-				<p class="form-disclaimer">
-					By clicking the button below, you agree to receive communications via Email/Call/WhatsApp/SMS about this academic program and other academic programs from University of Aberdeen or its trusted third party partners and service providers. 
-					<a href="<?php echo esc_url( home_url( '/privacy-policy' ) ); ?>" class="privacy-link" <?php echo program_track_attr( 'link', 'privacy-policy-link', 'lead-form-popup', 'componentLink' ); ?>>Privacy Policy</a>
-				</p>
+				<!-- Disclaimer & Submit Strip -->
+				<div class="form-disclaimer-wrapper">
+					<p class="form-disclaimer">
+						By clicking the button below, you agree to receive communications via Email/Call/WhatsApp/SMS about this academic program and other academic programs from University of Aberdeen or its trusted third-party partners and service providers. 
+						<a href="<?php echo esc_url( home_url( '/privacy-policy' ) ); ?>" class="privacy-link" <?php echo program_track_attr( 'link', 'privacy-policy-link', 'lead-form-popup', 'componentLink' ); ?>>Privacy Policy</a>
+					</p>
 
-				<!-- Submit Button -->
-				<div class="form-actions">
-					<button type="submit" class="btn btn-gold btn-submit-lead" id="btnSubmitLead" <?php echo program_track_attr( 'button', 'submit-lead-form', 'lead-form-popup', 'componentButton' ); ?>>
-						Submit
-					</button>
+					<!-- Submit Button (Left-aligned golden yellow) -->
+					<div class="form-actions">
+						<button type="submit" class="btn btn-gold btn-submit-lead" id="btnSubmitLead" <?php echo program_track_attr( 'button', 'submit-lead-form', 'lead-form-popup', 'componentButton' ); ?>>
+							Submit
+						</button>
+					</div>
 				</div>
 			</form>
 		</div>
 
-		<!-- Modal Body: Thank You State (from Figma design) -->
+		<!-- Modal Body: Thank You State (Matching Reference Image 2) -->
 		<div class="lead-modal-thankyou" id="leadModalThankYou" style="display: none;">
 			<div class="thank-you-box">
-				<div class="thank-you-icon">
-					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<circle cx="12" cy="12" r="11" fill="#1E7E34"/>
-						<path d="M7 12.5L10.5 16L17 9" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+				<div class="thank-you-icon" aria-hidden="true">
+					<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+						<circle cx="12" cy="12" r="10" stroke="#FFFFFF" stroke-width="2"/>
+						<path d="m8.5 12 2.5 2.5 5-5" stroke="#FFFFFF" stroke-width="2.2"/>
 					</svg>
 				</div>
 				<div class="thank-you-content">
@@ -144,11 +146,6 @@
 						We'll send you helpful information and updates about this programme, the application process, and more.
 					</p>
 				</div>
-			</div>
-			<div class="thank-you-actions">
-				<button type="button" class="btn btn-dark js-close-thankyou" <?php echo program_track_attr( 'button', 'close-thank-you-screen', 'lead-form-thankyou', 'componentButton' ); ?>>
-					Close
-				</button>
 			</div>
 		</div>
 	</div>
