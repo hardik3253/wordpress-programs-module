@@ -71,9 +71,10 @@ $term_name = ( ! empty( $terms ) && ! is_wp_error( $terms ) ) ? $terms[0]->name 
 
 		<div class="program-card-content">
 			<h3 class="program-card-title"><?php echo esc_html( $title ); ?></h3>
+			<div class="program-card-divider"></div>
 			
 			<?php if ( ! empty( $excerpt ) ) : ?>
-				<p class="program-card-excerpt"><?php echo esc_html( wp_trim_words( $excerpt, 16 ) ); ?></p>
+				<p class="program-card-excerpt"><?php echo esc_html( $excerpt ); ?></p>
 			<?php endif; ?>
 
 			<div class="program-card-meta">

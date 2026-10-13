@@ -886,9 +886,416 @@ button {
 	color: #065F46;
 }
 
-/* =========================================
-   Responsive Design (Desktop, Tablet, Mobile)
-========================================= */
+/* -----------------------------------------
+   6. Programmes Archive & Category Listing (Undergrad / Postgrad)
+----------------------------------------- */
+.programmes-archive-page {
+	background-color: #FFFFFF;
+}
+
+.page-intro-header {
+	background-color: #081D33;
+	padding: 48px 24px 44px;
+	text-align: center;
+}
+
+.page-intro-container {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.page-main-heading {
+	color: #F4B41A;
+	font-family: var(--font-heading);
+	font-size: 2.25rem;
+	font-weight: 800;
+	letter-spacing: -0.01em;
+	margin: 0;
+	line-height: 1.2;
+}
+
+.accent-underline-header {
+	width: 58px;
+	height: 2px;
+	background-color: #385975;
+	margin: 12px auto 0;
+	border-radius: 2px;
+}
+
+.page-lead-strip {
+	background-color: #FFFFFF;
+	padding: 38px 24px 26px;
+	text-align: center;
+}
+
+.page-lead-container {
+	max-width: 860px;
+	margin: 0 auto;
+}
+
+.page-lead-subtitle {
+	color: #081D33;
+	font-size: 1.05rem;
+	font-weight: 500;
+	line-height: 1.5;
+	margin: 0;
+}
+
+.program-filter-bar {
+	display: flex;
+	justify-content: center;
+	gap: 12px;
+	margin-top: 24px;
+}
+
+.filter-pill {
+	display: inline-block;
+	padding: 8px 22px;
+	border-radius: 9999px;
+	font-size: 0.92rem;
+	font-weight: 700;
+	background-color: #E2E8F0;
+	color: #081D33;
+	text-decoration: none;
+	transition: var(--transition-smooth);
+}
+
+.filter-pill:hover,
+.filter-pill.active {
+	background-color: #F4B41A;
+	color: #081D33;
+}
+
+.programs-listing-section {
+	background-color: #FFFFFF;
+	padding: 10px 40px 80px;
+}
+
+.programs-listing-container {
+	max-width: 1180px;
+	margin: 0 auto;
+}
+
+.programs-card-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 36px;
+	align-items: stretch;
+}
+
+.program-card {
+	background-color: #072E3F;
+	border-radius: 16px;
+	overflow: hidden;
+	box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+	transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+	display: flex;
+	flex-direction: column;
+}
+
+.program-card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 14px 34px rgba(7, 46, 63, 0.25);
+}
+
+.program-card-link {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	color: inherit;
+	text-decoration: none;
+}
+
+.program-card-image-wrap {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 16 / 10.5;
+	overflow: hidden;
+}
+
+.program-card-image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	transition: transform 0.4s ease;
+}
+
+.program-card:hover .program-card-image {
+	transform: scale(1.03);
+}
+
+.program-card-content {
+	padding: 26px 30px 32px;
+	background-color: #072E3F;
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.program-card-title {
+	color: #F4B41A;
+	font-family: var(--font-heading);
+	font-size: 1.5rem;
+	font-weight: 700;
+	line-height: 1.25;
+	margin: 0;
+}
+
+.program-card-divider {
+	width: 48px;
+	height: 2px;
+	background-color: #1A546E;
+	margin: 12px 0 16px;
+	border-radius: 1px;
+}
+
+.program-card-excerpt {
+	color: #FFFFFF;
+	font-size: 0.94rem;
+	line-height: 1.6;
+	margin: 0;
+	font-weight: 400;
+}
+
+.program-card-badge,
+.program-card-meta,
+.program-card-action {
+	display: none;
+}
+
+/* -----------------------------------------
+   7. Single Program Detail Page
+----------------------------------------- */
+.single-program-article {
+	background-color: #F8FAFC;
+}
+
+.program-detail-hero {
+	background: linear-gradient(135deg, #031B33 0%, #072E3F 100%);
+	padding: 36px 24px 50px;
+	color: #FFFFFF;
+}
+
+.detail-hero-container {
+	max-width: 1180px;
+	margin: 0 auto;
+}
+
+.detail-navigation-bar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 28px;
+	flex-wrap: wrap;
+	gap: 12px;
+}
+
+.back-link {
+	color: #F4B41A;
+	font-size: 0.92rem;
+	font-weight: 600;
+	text-decoration: none;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.back-link:hover {
+	color: #FFFFFF;
+}
+
+.breadcrumb-trail {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 0.86rem;
+	color: #94A3B8;
+}
+
+.breadcrumb-trail a {
+	color: #CBD5E1;
+	text-decoration: none;
+}
+
+.breadcrumb-trail a:hover {
+	color: #F4B41A;
+}
+
+.breadcrumb-current {
+	color: #F4B41A;
+	font-weight: 600;
+}
+
+.detail-hero-layout {
+	display: grid;
+	grid-template-columns: 1.15fr 1fr;
+	gap: 48px;
+	align-items: center;
+}
+
+.program-type-badge-link {
+	display: inline-block;
+	padding: 4px 14px;
+	background-color: rgba(244, 180, 26, 0.15);
+	border: 1px solid #F4B41A;
+	color: #F4B41A;
+	border-radius: 9999px;
+	font-size: 0.82rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	margin-bottom: 14px;
+	text-decoration: none;
+}
+
+.program-detail-title {
+	color: #FFFFFF;
+	font-family: var(--font-heading);
+	font-size: 2.35rem;
+	font-weight: 800;
+	line-height: 1.2;
+	margin: 0 0 20px;
+}
+
+.program-hero-meta-badges {
+	display: flex;
+	gap: 16px;
+	flex-wrap: wrap;
+	margin-bottom: 28px;
+}
+
+.hero-badge {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	background: rgba(255, 255, 255, 0.08);
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	padding: 8px 16px;
+	border-radius: 8px;
+	font-size: 0.92rem;
+}
+
+.hero-badge strong {
+	color: #F4B41A;
+}
+
+.program-action-buttons {
+	display: flex;
+	gap: 16px;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.btn-enquire-now {
+	background: transparent;
+	border: 2px solid #FFFFFF;
+	color: #FFFFFF;
+	padding: 8px 24px;
+	border-radius: 9999px;
+	font-weight: 700;
+	transition: var(--transition-smooth);
+}
+
+.btn-enquire-now:hover {
+	background: #FFFFFF;
+	color: #031B33;
+}
+
+.detail-featured-image {
+	width: 100%;
+	height: auto;
+	border-radius: 12px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+	object-fit: cover;
+	display: block;
+}
+
+.program-detail-body {
+	padding: 60px 24px 80px;
+}
+
+.detail-body-container {
+	max-width: 1080px;
+	margin: 0 auto;
+}
+
+.program-overview-card {
+	background: #FFFFFF;
+	border-radius: 12px;
+	padding: 40px;
+	box-shadow: 0 2px 14px rgba(0, 0, 0, 0.06);
+	margin-bottom: 36px;
+}
+
+.section-subheading {
+	font-family: var(--font-heading);
+	font-size: 1.65rem;
+	font-weight: 700;
+	color: #031B33;
+	margin-bottom: 18px;
+	border-bottom: 2px solid #F4B41A;
+	display: inline-block;
+	padding-bottom: 6px;
+}
+
+.program-main-text {
+	color: #334155;
+	font-size: 1.02rem;
+	line-height: 1.7;
+}
+
+.repeater-section-card {
+	background: #FFFFFF;
+	border-radius: 12px;
+	padding: 36px 40px;
+	box-shadow: 0 2px 14px rgba(0, 0, 0, 0.06);
+	margin-bottom: 28px;
+}
+
+.repeater-section-title {
+	font-family: var(--font-heading);
+	font-size: 1.45rem;
+	font-weight: 700;
+	color: #031B33;
+	margin-bottom: 16px;
+}
+
+.repeater-section-body p {
+	color: #334155;
+	font-size: 0.98rem;
+	line-height: 1.65;
+	margin-bottom: 16px;
+}
+
+.repeater-section-image img {
+	width: 100%;
+	border-radius: 8px;
+	margin-top: 14px;
+}
+
+.detail-bottom-cta {
+	background: #031B33;
+	color: #FFFFFF;
+	border-radius: 16px;
+	padding: 48px 36px;
+	text-align: center;
+	margin-top: 48px;
+	box-shadow: 0 8px 30px rgba(3, 27, 51, 0.2);
+}
+
+.cta-box h3 {
+	font-family: var(--font-heading);
+	font-size: 1.85rem;
+	font-weight: 700;
+	margin-bottom: 12px;
+}
+
+.cta-box p {
+	font-size: 1.05rem;
+	color: #CBD5E1;
+	margin-bottom: 24px;
+}
 
 /* Tablet & Smaller Laptops (<= 1100px) */
 @media (max-width: 1100px) {
@@ -1008,8 +1415,14 @@ button {
 	}
 
 	.careers-main-grid,
-	.programmes-category-grid {
+	.programmes-category-grid,
+	.programs-card-grid {
 		grid-template-columns: 1fr;
+	}
+
+	.detail-hero-layout {
+		grid-template-columns: 1fr;
+		gap: 32px;
 	}
 
 	.form-row {
@@ -1093,5 +1506,50 @@ button {
 	.slider-dot {
 		width: 12px;
 		height: 12px;
+	}
+
+	.programs-listing-section {
+		padding: 10px 18px 60px;
+	}
+
+	.page-intro-header {
+		padding: 36px 16px 30px;
+	}
+
+	.page-main-heading {
+		font-size: 1.75rem;
+	}
+
+	.page-lead-strip {
+		padding: 24px 16px 18px;
+	}
+
+	.page-lead-subtitle {
+		font-size: 0.94rem;
+	}
+
+	.program-card-content {
+		padding: 20px 20px 24px;
+	}
+
+	.program-card-title {
+		font-size: 1.3rem;
+	}
+
+	.program-detail-title {
+		font-size: 1.75rem;
+	}
+
+	.program-overview-card,
+	.repeater-section-card {
+		padding: 24px 20px;
+	}
+
+	.detail-bottom-cta {
+		padding: 32px 20px;
+	}
+
+	.cta-box h3 {
+		font-size: 1.45rem;
 	}
 }
