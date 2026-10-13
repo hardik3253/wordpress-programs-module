@@ -24,7 +24,9 @@
 }
 
 /* Reset & Base */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
@@ -85,7 +87,7 @@ button {
    1. Header (Matching Figma Reference)
 ----------------------------------------- */
 .site-header {
-	background-color: #031B33;
+	background-color: #111D2F;
 	position: sticky;
 	top: 0;
 	z-index: 1000;
@@ -358,8 +360,13 @@ button {
 	background: #0B4F66;
 }
 
-.slider-arrow-prev { left: 0; }
-.slider-arrow-next { right: 0; }
+.slider-arrow-prev {
+	left: 0;
+}
+
+.slider-arrow-next {
+	right: 0;
+}
 
 /* 3 Pagination dots matching screenshot */
 .slider-dots {
@@ -419,16 +426,16 @@ button {
 .section-heading-dark {
 	font-family: var(--font-heading);
 	font-size: 2.25rem;
-	font-weight: 800;
-	color: #2D3748;
+	font-weight: 700;
+	color: #383A31;
 	line-height: 1.2;
 	letter-spacing: -0.01em;
 }
 
 .accent-underline-gold {
 	width: 68px;
-	height: 3.5px;
-	background-color: #F2B827;
+	height: 4px;
+	background-color: #5F5633;
 	border-radius: 2px;
 	margin-top: 8px;
 }
@@ -494,7 +501,7 @@ button {
    4. Our Programmes Section (Desktop P1)
 ----------------------------------------- */
 .our-programmes-section {
-	background-color: var(--color-navy-dark);
+	background-color: #082B40;
 	padding: 70px 24px 90px;
 }
 
@@ -511,14 +518,14 @@ button {
 .section-heading-gold {
 	font-family: var(--font-heading);
 	font-size: 2.3rem;
-	font-weight: 800;
+	font-weight: 700;
 	color: var(--color-gold);
 }
 
 .accent-underline-gold-center {
 	width: 50px;
-	height: 3px;
-	background-color: var(--color-gold);
+	height: 4px;
+	background-color: #486F80;
 	margin: 8px auto 0;
 	border-radius: 2px;
 }
@@ -530,7 +537,7 @@ button {
 }
 
 .programme-cat-card {
-	background: var(--color-navy-card);
+	background: #00374E;
 	border: 1px solid var(--color-navy-card-border);
 	border-radius: 14px;
 	overflow: hidden;
@@ -605,9 +612,8 @@ button {
    5. Footer
 ----------------------------------------- */
 .site-footer {
-	background-color: var(--color-navy-darker);
+	background: linear-gradient(1.74deg, #1B4C61 1.49%, #111D2F 98.55%);
 	color: #CBD5E1;
-	border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .footer-container {
@@ -672,6 +678,7 @@ button {
 
 .social-links {
 	display: flex;
+	justify-content: flex-end;
 	gap: 14px;
 }
 
@@ -686,7 +693,7 @@ button {
 }
 
 .footer-bottom-bar {
-	background-color: #02070D;
+	background-color: #111D2F;
 	padding: 18px 24px;
 	border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -986,7 +993,7 @@ button {
 }
 
 .page-intro-header {
-	background-color: #081D33;
+	background-color: #082B40;
 	padding: 48px 24px 44px;
 	text-align: center;
 }
@@ -1008,15 +1015,15 @@ button {
 
 .accent-underline-header {
 	width: 58px;
-	height: 2px;
-	background-color: #385975;
+	height: 4px;
+	background-color: #486F80;
 	margin: 12px auto 0;
 	border-radius: 2px;
 }
 
 .page-lead-strip {
 	background-color: #FFFFFF;
-	padding: 38px 24px 26px;
+	padding: 80px 24px 26px;
 	text-align: center;
 }
 
@@ -1118,8 +1125,8 @@ button {
 }
 
 .program-card-content {
-	padding: 26px 30px 32px;
-	background-color: #072E3F;
+	padding: 20px 20px 32px;
+	background-color: #00374E;
 	flex-grow: 1;
 	display: flex;
 	flex-direction: column;
@@ -1136,8 +1143,8 @@ button {
 
 .program-card-divider {
 	width: 48px;
-	height: 2px;
-	background-color: #1A546E;
+	height: 4px;
+	background-color: #486F80;
 	margin: 12px 0 16px;
 	border-radius: 1px;
 }
