@@ -17,6 +17,7 @@
 	var MediaUpload = wp.blockEditor.MediaUpload || wp.editor.MediaUpload;
 
 	var defaultImages = (window.AberdeenThemeData && window.AberdeenThemeData.defaultImages) || {};
+	var defaultUrls = (window.AberdeenThemeData && window.AberdeenThemeData.urls) || {};
 
 	/* ==========================================================================
 	   1. Hero Slider Block
@@ -37,7 +38,7 @@
 			},
 			linkUrl: {
 				type: 'string',
-				default: '/programmes'
+				default: defaultUrls.programmes || ''
 			},
 			imageUrl: {
 				type: 'string',
@@ -133,7 +134,7 @@
 			},
 			buttonUrl: {
 				type: 'string',
-				default: '/programmes'
+				default: defaultUrls.programmes || ''
 			}
 		},
 
@@ -232,7 +233,7 @@
 			},
 			card1Link: {
 				type: 'string',
-				default: '/programmes/undergraduate'
+				default: defaultUrls.undergraduate || ''
 			},
 			card2Title: {
 				type: 'string',
@@ -248,7 +249,7 @@
 			},
 			card2Link: {
 				type: 'string',
-				default: '/programmes/postgraduate'
+				default: defaultUrls.postgraduate || ''
 			}
 		},
 
