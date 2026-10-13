@@ -45,6 +45,12 @@ function aberdeen_block_editor_assets() {
 			'aiUndergrad'      => get_template_directory_uri() . '/assets/images/ai-undergrad.jpg',
 			'lecturePostgrad'  => get_template_directory_uri() . '/assets/images/lecture-postgrad.jpg',
 		),
+		'urls' => array(
+			'home'          => home_url( '/' ),
+			'programmes'    => home_url( '/programmes' ),
+			'undergraduate' => home_url( '/programmes/undergraduate' ),
+			'postgraduate'  => home_url( '/programmes/postgraduate' ),
+		),
 	) );
 
 	wp_enqueue_style(
@@ -57,12 +63,49 @@ function aberdeen_block_editor_assets() {
 add_action( 'enqueue_block_editor_assets', 'aberdeen_block_editor_assets' );
 
 /**
+ * Helper to ensure block URLs properly respect the WordPress home_url()
+ * and site directory (e.g. /aum/) so links never point outside the installation.
+ */
+function aberdeen_format_url( $url, $fallback = '' ) {
+	$target = ! empty( $url ) ? trim( $url ) : $fallback;
+
+	if ( empty( $target ) ) {
+		return home_url( '/' );
+	}
+
+	// Anchors, tel, mailto
+	if ( 0 === strpos( $target, '#' ) || 0 === strpos( $target, 'mailto:' ) || 0 === strpos( $target, 'tel:' ) ) {
+		return $target;
+	}
+
+	// Full absolute URLs
+	if ( preg_match( '#^https?://#i', $target ) ) {
+		$home       = home_url();
+		$home_path  = trim( (string) wp_parse_url( $home, PHP_URL_PATH ), '/' );
+		$target_url = wp_parse_url( $target );
+		$home_url_p = wp_parse_url( $home );
+
+		// If it points to the same domain (e.g. localhost) but omitted the subfolder /aum
+		if ( ! empty( $home_path ) && isset( $target_url['host'] ) && $target_url['host'] === $home_url_p['host'] ) {
+			$t_path = isset( $target_url['path'] ) ? trim( $target_url['path'], '/' ) : '';
+			if ( 0 !== strpos( $t_path, $home_path ) ) {
+				return home_url( '/' . $t_path );
+			}
+		}
+		return $target;
+	}
+
+	// Root-relative or relative paths (e.g. '/programmes' or 'programmes/undergraduate')
+	return home_url( '/' . ltrim( $target, '/' ) );
+}
+
+/**
  * 1. Render callback for Hero Slider block
  */
 function aberdeen_render_hero_slider_block( $attributes ) {
 	$headline   = ! empty( $attributes['headline'] ) ? $attributes['headline'] : 'Join the University of Aberdeen in India';
 	$subtext    = ! empty( $attributes['subtext'] ) ? $attributes['subtext'] : 'Global challenges are waiting for new ways of thinking. Discover your true north and start creating a more inclusive and sustainable world';
-	$link_url   = ! empty( $attributes['linkUrl'] ) ? $attributes['linkUrl'] : home_url( '/programmes' );
+	$link_url   = aberdeen_format_url( ! empty( $attributes['linkUrl'] ) ? $attributes['linkUrl'] : '', '/programmes' );
 	$image_url  = ! empty( $attributes['imageUrl'] ) ? $attributes['imageUrl'] : get_template_directory_uri() . '/assets/images/hero-skyline.jpg';
 	$slides_json = ! empty( $attributes['slidesJson'] ) ? json_decode( $attributes['slidesJson'], true ) : null;
 
@@ -88,7 +131,7 @@ function aberdeen_render_hero_slider_block( $attributes ) {
 				$slide_bg   = ! empty( $slide['image_url'] ) ? $slide['image_url'] : $image_url;
 				$slide_head = ! empty( $slide['headline'] ) ? $slide['headline'] : $headline;
 				$slide_sub  = ! empty( $slide['subtext'] ) ? $slide['subtext'] : $subtext;
-				$slide_link = ! empty( $slide['link_url'] ) ? $slide['link_url'] : $link_url;
+				$slide_link = aberdeen_format_url( ! empty( $slide['link_url'] ) ? $slide['link_url'] : $link_url, '/programmes' );
 				?>
 				<div class="slide-item <?php echo ( 0 === $index ) ? 'active' : ''; ?>" style="background-image: url('<?php echo esc_url( $slide_bg ); ?>');">
 					<div class="hero-bottom-bar">
@@ -158,7 +201,7 @@ function aberdeen_render_careers_block( $attributes ) {
 						<p><?php echo esc_html( $p2 ); ?></p>
 					</div>
 					<div class="careers-action">
-						<a href="<?php echo esc_url( $button_url ); ?>" class="btn btn-gold btn-see-more" <?php echo program_track_attr( 'link', 'careers-see-more', 'careers-section', 'componentLink' ); ?>>
+						<a href="<?php echo esc_url( aberdeen_format_url( $button_url, '/programmes' ) ); ?>" class="btn btn-gold btn-see-more" <?php echo program_track_attr( 'link', 'careers-see-more', 'careers-section', 'componentLink' ); ?>>
 							<?php echo esc_html( $button_text ); ?>
 						</a>
 					</div>
@@ -178,12 +221,12 @@ function aberdeen_render_our_programmes_block( $attributes ) {
 	$card1_title  = ! empty( $attributes['card1Title'] ) ? $attributes['card1Title'] : 'Undergraduate Programmes';
 	$card1_desc   = ! empty( $attributes['card1Desc'] ) ? $attributes['card1Desc'] : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante tortor.';
 	$card1_image  = ! empty( $attributes['card1Image'] ) ? $attributes['card1Image'] : get_template_directory_uri() . '/assets/images/ai-undergrad.jpg';
-	$card1_link   = ! empty( $attributes['card1Link'] ) ? $attributes['card1Link'] : home_url( '/programmes/undergraduate' );
+	$card1_link   = aberdeen_format_url( ! empty( $attributes['card1Link'] ) ? $attributes['card1Link'] : '', '/programmes/undergraduate' );
 
 	$card2_title  = ! empty( $attributes['card2Title'] ) ? $attributes['card2Title'] : 'Postgraduate Programmes';
 	$card2_desc   = ! empty( $attributes['card2Desc'] ) ? $attributes['card2Desc'] : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante tortor.';
 	$card2_image  = ! empty( $attributes['card2Image'] ) ? $attributes['card2Image'] : get_template_directory_uri() . '/assets/images/lecture-postgrad.jpg';
-	$card2_link   = ! empty( $attributes['card2Link'] ) ? $attributes['card2Link'] : home_url( '/programmes/postgraduate' );
+	$card2_link   = aberdeen_format_url( ! empty( $attributes['card2Link'] ) ? $attributes['card2Link'] : '', '/programmes/postgraduate' );
 
 	ob_start();
 	?>
