@@ -19,8 +19,21 @@ function university_theme_setup() {
 }
 add_action( 'after_setup_theme', 'university_theme_setup' );
 
+// Load CPT & Taxonomy (Task 2)
+require_once get_template_directory() . '/includes/cpt-taxonomy.php';
+
+// Load Custom Fields & React Admin Metabox (Task 3)
+require_once get_template_directory() . '/includes/custom-fields.php';
+
 // Load Gutenberg custom blocks
 require_once get_template_directory() . '/includes/blocks.php';
+
+// Load Routing & Rewrite Rules (Task 4)
+require_once get_template_directory() . '/includes/routing.php';
+
+// Load Data Tracking System (Task 8)
+require_once get_template_directory() . '/includes/tracking.php';
+
 
 
 function university_theme_scripts() {
@@ -88,4 +101,31 @@ function university_get_programs( $term_slug = '' ) {
 	}
 
 	return get_posts( $args );
+}
+
+/**
+ * Task 5: Helper function to render reusable program card
+ *
+ * @param int|WP_Post|null $post_id Post ID or WP_Post object.
+ * @param bool             $echo    Whether to output or return HTML.
+ * @param array            $args    Additional template arguments.
+ * @return string|void
+ */
+function render_program_card( $post_id = null, $echo = true, $args = array() ) {
+	if ( ! $post_id ) {
+		$post_id = get_the_ID();
+	}
+	if ( is_object( $post_id ) && isset( $post_id->ID ) ) {
+		$post_id = $post_id->ID;
+	}
+
+	$card_args = array_merge( array( 'post_id' => $post_id ), $args );
+
+	if ( ! $echo ) {
+		ob_start();
+		get_template_part( 'template-parts/program-card', null, $card_args );
+		return ob_get_clean();
+	}
+
+	get_template_part( 'template-parts/program-card', null, $card_args );
 }
