@@ -118,9 +118,21 @@ function aberdeen_render_hero_slider_block( $attributes ) {
 			'link_url'  => $link_url,
 			'image_url' => $image_url,
 		),
+		array(
+			'headline'  => 'World-Class Scottish Education in Mumbai',
+			'subtext'   => 'Benefit from over 500 years of academic heritage combined with innovative industry partnerships and globally recognised degrees.',
+			'link_url'  => aberdeen_format_url( '/programmes/undergraduate' ),
+			'image_url' => content_url( '/uploads/2026/10/2b71e6559542c9d76909b366948c3f60c0486b9a.png' ),
+		),
+		array(
+			'headline'  => 'Transform Your Future Through Industry Focus',
+			'subtext'   => 'Explore cutting-edge undergraduate and postgraduate programmes designed for tomorrow\'s technology leaders and entrepreneurs.',
+			'link_url'  => aberdeen_format_url( '/programmes/postgraduate' ),
+			'image_url' => content_url( '/uploads/2026/10/1f1cfbfa70f757fb0fc013dc99166d566c66d42c.jpg' ),
+		),
 	);
 
-	if ( ! empty( $slides_json ) && is_array( $slides_json ) ) {
+	if ( ! empty( $slides_json ) && is_array( $slides_json ) && count( $slides_json ) > 1 ) {
 		$slides = $slides_json;
 	}
 
@@ -135,21 +147,16 @@ function aberdeen_render_hero_slider_block( $attributes ) {
 				$slide_sub  = ! empty( $slide['subtext'] ) ? $slide['subtext'] : $subtext;
 				$slide_link = aberdeen_format_url( ! empty( $slide['link_url'] ) ? $slide['link_url'] : $link_url, '/programmes' );
 				?>
-				<div class="slide-item <?php echo ( 0 === $index ) ? 'active' : ''; ?>" style="background-image: url('<?php echo esc_url( $slide_bg ); ?>');">
+				<div class="slide-item <?php echo ( 0 === $index ) ? 'active' : ''; ?>" style="background-image: url('<?php echo esc_url( $slide_bg ); ?>');" data-slide-index="<?php echo esc_attr( $index ); ?>">
 					<div class="hero-bottom-bar">
 						<div class="hero-content-container">
 							<h1 class="hero-headline"><?php echo esc_html( $slide_head ); ?></h1>
 							<p class="hero-subtext">
 								<?php echo esc_html( $slide_sub ); ?>
-								<a href="<?php echo esc_url( $slide_link ); ?>" class="hero-inline-link" <?php echo program_track_attr( 'link', 'hero-discover-more', 'hero-section', 'componentLink' ); ?>>
+								<a href="<?php echo esc_url( $slide_link ); ?>" class="hero-inline-link" <?php echo program_track_attr( 'link', 'hero-discover-more-' . ( $index + 1 ), 'hero-section', 'componentLink' ); ?>>
 									<span class="hero-arrow-gold">&#10148;</span>
 								</a>
 							</p>
-							<div class="slider-dots" id="sliderDots" role="tablist" aria-label="Hero Slides">
-								<button type="button" class="slider-dot active" data-slide-index="0" aria-label="Slide 1" <?php echo program_track_attr( 'button', 'hero-dot-1', 'hero-section', 'componentButton' ); ?>></button>
-								<button type="button" class="slider-dot hollow" data-slide-index="1" aria-label="Slide 2" <?php echo program_track_attr( 'button', 'hero-dot-2', 'hero-section', 'componentButton' ); ?>></button>
-								<button type="button" class="slider-dot hollow" data-slide-index="2" aria-label="Slide 3" <?php echo program_track_attr( 'button', 'hero-dot-3', 'hero-section', 'componentButton' ); ?>></button>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -166,6 +173,13 @@ function aberdeen_render_hero_slider_block( $attributes ) {
 					<polyline points="9 18 15 12 9 6"></polyline>
 				</svg>
 			</button>
+
+			<!-- 3 Pagination dots matching attached Figma design -->
+			<div class="slider-dots" id="sliderDots" role="tablist" aria-label="Hero Slides">
+				<?php for ( $i = 0; $i < count( $slides ); $i++ ) : ?>
+					<button type="button" class="slider-dot <?php echo ( 0 === $i ) ? 'active' : 'hollow'; ?>" data-slide-index="<?php echo esc_attr( $i ); ?>" aria-label="Slide <?php echo esc_attr( $i + 1 ); ?>" <?php echo program_track_attr( 'button', 'hero-dot-' . ( $i + 1 ), 'hero-section', 'componentButton' ); ?>></button>
+				<?php endfor; ?>
+			</div>
 		</div>
 	</section>
 	<?php
