@@ -41,10 +41,14 @@ function university_theme_scripts() {
 	wp_enqueue_style( 'university-google-fonts', 'https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap', array(), null );
 
 	// Theme Stylesheet
-	wp_enqueue_style( 'university-theme-main', get_template_directory_uri() . '/assets/css/main.css', array(), '1.0.0' );
+	$css_file = get_template_directory() . '/assets/css/main.css';
+	$css_ver  = file_exists( $css_file ) ? filemtime( $css_file ) : '1.0.4';
+	wp_enqueue_style( 'university-theme-main', get_template_directory_uri() . '/assets/css/main.css', array(), $css_ver );
 
 	// Main JS Script
-	wp_enqueue_script( 'university-theme-main', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true );
+	$js_file = get_template_directory() . '/assets/js/main.js';
+	$js_ver  = file_exists( $js_file ) ? filemtime( $js_file ) : '1.0.4';
+	wp_enqueue_script( 'university-theme-main', get_template_directory_uri() . '/assets/js/main.js', array(), $js_ver, true );
 
 	// Pass tracking REST endpoint and nonce
 	wp_localize_script( 'university-theme-main', 'AberdeenConfig', array(
