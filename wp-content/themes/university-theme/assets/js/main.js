@@ -277,15 +277,36 @@
 			var rawData = trackTarget.getAttribute('data-track');
 			if (!rawData) return;
 
-			var payload;
-			try {
-				payload = JSON.parse(rawData);
-			} catch (err) {
-				// Task 8: ignore invalid JSON without throwing errors
-				return;
+			var payload = {};
+
+			// Parse pipe-delimited format (type|id|section|component) or JSON format
+			if (rawData.trim().indexOf('{') === 0) {
+				try {
+					payload = JSON.parse(rawData);
+				} catch (err) {
+					return;
+				}
+			} else if (rawData.indexOf('|') !== -1) {
+				var parts = rawData.split('|');
+				payload = {
+					event_type: parts[0] || 'click',
+					element_id: parts[1] || 'element',
+					section: parts[2] || 'general',
+					component: parts[3] || 'component'
+				};
+			} else {
+				payload = {
+					event_type: 'click',
+					element_id: rawData,
+					section: 'general',
+					component: 'unknown'
+				};
 			}
 
-			if (!payload || typeof payload !== 'object') return;
+			// Enrich with client metadata
+			payload.timestamp = new Date().toISOString();
+			payload.page_url = window.location.href;
+			payload.user_agent = navigator.userAgent;
 
 			var jsonPayload = JSON.stringify(payload);
 
