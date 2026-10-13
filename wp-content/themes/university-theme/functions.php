@@ -19,6 +19,10 @@ function university_theme_setup() {
 }
 add_action( 'after_setup_theme', 'university_theme_setup' );
 
+// Load Gutenberg custom blocks
+require_once get_template_directory() . '/includes/blocks.php';
+
+
 function university_theme_scripts() {
 	// Google Fonts: Inter & Outfit
 	wp_enqueue_style( 'university-google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap', array(), null );
